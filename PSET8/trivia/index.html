@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                 <div class="question"><h3 id="MCQ">What is appropriate ratio of people to sheep in New Zealand</h3></div>
+                 <div class="choices"><button>6 people per 1 sheep</button><button>3 people per 1 sheep</button><button>1 people per 1 sheep</button><button>1 people per 3 sheep</button><button>1 people per 6 sheep</button></div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3 >In which country is it illegal to own only one guinea pig, as a lone guinea pig  might get lonely?</h3>
+                <div class="part2"><input type="text" class="answer" placeholder="answer"><button id="submitter">Check answer</button><br></div>
+            </div>
+        </div>
+    </body>
+    <script>
+            let mcq=document.querySelector(".question");
+            function clearFormat(){
+                indicators=mcq.querySelectorAll("p")
+                for(indicator of indicators){
+                    indicator.remove();
+                }
+                let buttons=document.querySelectorAll(".choices");
+                for(button of buttons){
+                    button.style.backgroundColor="";
+                }
+            }
+            function answerChecker(event){
+                clearFormat();
+                let btn = event.target;
+                if( btn.innerText=="1 people per 6 sheep"){
+                    btn.style.backgroundColor='green';
+                    let indicator= document.createElement("p");
+                    indicator.innerText="Correct"
+                    mcq.appendChild(indicator)
+                }
+                else{
+                    btn.style.backgroundColor='red';
+                    let indicator= document.createElement("p");
+                    indicator.innerText="incorrect"
+                    mcq.appendChild(indicator)
+                }
+            }
+            choices=document.querySelector(".choices")
+            let buttons=choices.querySelectorAll("button");
+            for(let btn of buttons){
+                btn.addEventListener("click",answerChecker);
+            }
+            let checker=document.querySelector("#submitter");
+            part2=document.querySelector(".part2");
+            function part2Clear(){
+                p=part2.querySelector("p");
+                if (p) {
+                        p.remove();
+                        }
+            }
+            function quizChecker(event){
+                part2Clear();
+                btn=event.target;
+
+                answer=document.querySelector(".answer");
+                if(answer.value.toLowerCase()=="switzerland"){
+                    answer.style.borderColor='green';
+                    indicator=document.createElement("p");
+                    indicator.innerText="Correct";
+                    part2.appendChild(indicator)
+
+                }
+                else{
+                    answer.style.borderColor='red';
+                    indicator=document.createElement("p");
+                    indicator.innerText="Incorrect";
+                    part2.appendChild(indicator)
+                }
+
+            }
+            checker.addEventListener("click",quizChecker);
+
+        </script>
+</html>
