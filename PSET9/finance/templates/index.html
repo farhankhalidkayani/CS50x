@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block main %}
+<table>
+  <tr>
+    <th>Stocks</th>
+    <th>Number of Shares</th>
+    <th>Current Price</th>
+    <th>Total Value</th>
+  </tr>
+  {% for stock in stocks %}
+  <tr>
+    <td>{{ stock.stock_name }}</td>
+    <td>{{ stock.no_shares }}</td>
+    <td>{{ usd(lookup(stock.stock_name)["price"]) }}</td>
+    <td>{{ usd(lookup(stock.stock_name)["price"] * stock.no_shares) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h1>Current Balance: {{ usd(cash) }}</h1>
+<h1>Total Value of Cash and Stocks: {{ usd(value) }}</h1>
+
+<p style="display: none">112.00</p>
+{% endblock %}

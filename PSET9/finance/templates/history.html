@@ -1,0 +1,26 @@
+{% extends "layout.html" %} {% block main %}
+<h1>Transaction History</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock Symbol</th>
+      <th>Shares</th>
+      <th>Price</th>
+      <th>Type</th>
+      <th>Date & Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for transaction in transactions %}
+    <tr>
+      <td>{{ transaction.stock_name }}</td>
+      <td>{{ transaction.no_shares }}</td>
+      <td>{{ usd(transaction.price) }}</td>
+      <td>{{ transaction.type | capitalize }}</td>
+      <td>{{ transaction.timestamp }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
